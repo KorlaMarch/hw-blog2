@@ -1,13 +1,11 @@
 import React from 'react';
 
-import BlogAside from './BlogAside.jsx'
-
-export default class Post extends React.Component{
+export default class ShortPost extends React.Component{
   render(){
     return (
-      <div className="row">
+      <article className="row">
         <div className="col">
-          <h3 className="row">This is blog title</h3>
+          <a href="#"><h3 className="row">This is blog title</h3></a>
           <h6 className="row">By March on 9/24/2017</h6>
           <p className="row">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -18,8 +16,7 @@ export default class Post extends React.Component{
             in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
-        <BlogAside />
-      </div>
-    )
+      </article>
+    );
   }
 }
