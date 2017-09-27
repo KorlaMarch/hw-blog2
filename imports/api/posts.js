@@ -6,17 +6,17 @@ import { check } from "meteor/check";
 export const Posts = new Mongo.Collection("posts");
 
 //Database schema
-Post.schema = new SimpleSchema({
+Posts.schema = new SimpleSchema({
   topic : {type : String},
   content : {type : String},
   ownerName : {type : String, defaultValue : "Anonymous"},
   ownerID : {type : Number},
   createdAt: {type : Date},
 });
-Post.attachSchema(Post.schema);
+Posts.attachSchema(Posts.schema);
 
 //Database publish
-if(Meteor.isServer()){
+if(Meteor.isServer){
   Meteor.publish('posts', function postsPublication(){
     return Posts.find({});
   });
@@ -29,11 +29,11 @@ Meteor.methods({
     check(content, String);
     check(ownerID, Number);
 
-    Posts.insert(
+    Posts.insert({
       topic,
       content,
       ownerID,
       createdAt : new Date()
-    );
+    });
   }
 })

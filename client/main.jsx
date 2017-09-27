@@ -29,12 +29,12 @@ FlowRouter.route('/new', {
   }
 });
 
-FlowRouter.route('/post', {
+FlowRouter.route('/post/:_postid', {
   name: 'Blog.Post',
-  action() {
+  action(params) {
     const root = document.getElementById('root');
     if(root){
-      ReactDOM.render(<App><Post /></App>,root);
+      ReactDOM.render(<App><Post id={params._postid} /></App>,root);
     }
   }
 });
@@ -47,6 +47,6 @@ Meteor.startup( () => {
   }else if(routeName=='Blog.Create'){
     ReactDOM.render(<App><CreatePost /></App>,root);
   }else if(routeName=='Blog.Post'){
-    ReactDOM.render(<App><Post /></App>,root);
+    ReactDOM.render(<App><Post id={FlowRouter.getParam('_postid')} /></App>,root);
   }
 });
