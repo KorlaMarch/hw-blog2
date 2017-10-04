@@ -9,13 +9,15 @@ class Post extends React.Component{
   render(){
     return (
       <div className="row">
-        <div className="col">
-          <h3 className="row">{ this.props.post.topic }</h3>
-          <h6 className="row">By March on 9/24/2017</h6>
-          <p className="row">
-            { this.props.post.content }
-          </p>
-        </div>
+        {this.props.post &&
+          <div className="col">
+            <h3 className="row">{ this.props.post.topic }</h3>
+            <h6 className="row">By {this.props.post.ownerName} on {this.props.post.createdAt.toString()}</h6>
+            <p className="row">
+              { this.props.post.content }
+            </p>
+          </div>
+        }
         <BlogAside />
       </div>
     )
@@ -25,6 +27,6 @@ class Post extends React.Component{
 export default withTracker( ({ id }) => {
     Meteor.subscribe('posts');
     return {
-      post : Post.findOne({_id : id})
+      post : Posts.findOne({_id : id})
     };
 })(Post);
